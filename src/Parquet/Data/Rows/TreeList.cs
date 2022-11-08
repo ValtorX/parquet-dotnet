@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Parquet.Data.Rows
 {
-   class TreeList
+   public class TreeList
    {
       private readonly TreeList _parent;
       private List<TreeList> _children;

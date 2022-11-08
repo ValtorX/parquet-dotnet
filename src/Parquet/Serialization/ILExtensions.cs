@@ -11,7 +11,7 @@ namespace Parquet.Serialization
    /// <summary>
    /// Extension methods to simplify MSIL generation
    /// </summary>
-   static class ILExtensions
+   public static class ILExtensions
    {
       //brtrue_s vs brtrue - "short" forms use 1-byte offset used to generate smaller binaries, however they won't reach the destination
       //if you're jumping too far, so beware!!!!

@@ -1,6 +1,6 @@
 ﻿namespace Parquet.Data.Rows
 {
-   struct LevelIndex
+   public struct LevelIndex
    {
       public LevelIndex(int level, int index)
       {

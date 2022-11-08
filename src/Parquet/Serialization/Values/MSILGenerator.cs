@@ -9,7 +9,7 @@ using static System.Reflection.Emit.OpCodes;
 
 namespace Parquet.Serialization.Values
 {
-   class MSILGenerator
+   public class MSILGenerator
    {
       private static readonly TypeConversion[] conversions = new TypeConversion[]
       {

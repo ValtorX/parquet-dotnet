@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Parquet.Data.Rows
 {
-   class DataColumnAppender
+   public class DataColumnAppender
    {
       private readonly DataField _dataField;
       private readonly List<object> _values = new List<object>();

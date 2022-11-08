@@ -1,6 +1,6 @@
 ﻿namespace Parquet.Data.Rows
 {
-   enum StringFormat
+   public enum StringFormat
    {
       JsonSingleQuote,
       Json,

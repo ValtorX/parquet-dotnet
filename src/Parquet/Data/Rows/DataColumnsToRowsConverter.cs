@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Parquet.Data.Rows
 {
-   class DataColumnsToRowsConverter
+   public class DataColumnsToRowsConverter
    {
       private readonly Schema _schema;
       private readonly DataColumn[] _columns;
@@ -43,7 +43,7 @@ namespace Parquet.Data.Rows
          return result;
       }
 
-      private void ColumnsToRows(IReadOnlyCollection<Field> fields, Dictionary<string, LazyColumnEnumerator> pathToColumn, List<Row> result, long rowCount)
+      public void ColumnsToRows(IReadOnlyCollection<Field> fields, Dictionary<string, LazyColumnEnumerator> pathToColumn, List<Row> result, long rowCount)
       {
          for(int rowIndex = 0; rowCount == -1 || rowIndex < rowCount; rowIndex++)
          {
@@ -54,7 +54,7 @@ namespace Parquet.Data.Rows
          }
       }
 
-      private IReadOnlyList<Row> BuildRows(IReadOnlyCollection<Field> fields, Dictionary<string, LazyColumnEnumerator> pathToColumn)
+      public IReadOnlyList<Row> BuildRows(IReadOnlyCollection<Field> fields, Dictionary<string, LazyColumnEnumerator> pathToColumn)
       {
          var rows = new List<Row>();
 
@@ -66,7 +66,7 @@ namespace Parquet.Data.Rows
          return rows;
       }
 
-      private bool TryBuildNextRow(IReadOnlyCollection<Field> fields, Dictionary<string, LazyColumnEnumerator> pathToColumn, out Row row)
+      public bool TryBuildNextRow(IReadOnlyCollection<Field> fields, Dictionary<string, LazyColumnEnumerator> pathToColumn, out Row row)
       {
          var rowList = new List<object>();
          foreach(Field f in fields)
@@ -84,7 +84,7 @@ namespace Parquet.Data.Rows
          return true;
       }
 
-      private bool TryBuildNextCell(Field f, Dictionary<string, LazyColumnEnumerator> pathToColumn, out object cell)
+      public bool TryBuildNextCell(Field f, Dictionary<string, LazyColumnEnumerator> pathToColumn, out object cell)
       {
          switch (f.SchemaType)
          {
@@ -119,7 +119,7 @@ namespace Parquet.Data.Rows
          return true;
       }
 
-      private bool TryBuildListCell(ListField lf, Dictionary<string, LazyColumnEnumerator> pathToColumn, out object cell)
+      public bool TryBuildListCell(ListField lf, Dictionary<string, LazyColumnEnumerator> pathToColumn, out object cell)
       {
          //As this is the list, all sub-columns of this list have to be cut into. This is essentially a more complicated version of
          //the TryBuildMapCell method
@@ -145,12 +145,12 @@ namespace Parquet.Data.Rows
          return true;
       }
 
-      private bool TryBuildStructCell(StructField sf, Dictionary<string, LazyColumnEnumerator> pathToColumn, out Row cell)
+      public bool TryBuildStructCell(StructField sf, Dictionary<string, LazyColumnEnumerator> pathToColumn, out Row cell)
       {
          return TryBuildNextRow(sf.Fields, pathToColumn, out cell);
       }
 
-      private bool TryBuildMapCell(MapField mf, Dictionary<string, LazyColumnEnumerator> pathToColumn, out IReadOnlyList<Row> rows)
+      public bool TryBuildMapCell(MapField mf, Dictionary<string, LazyColumnEnumerator> pathToColumn, out IReadOnlyList<Row> rows)
       {
          //"cut into" the keys and values collection
          LazyColumnEnumerator keysCollection = pathToColumn[mf.Key.Path];
@@ -172,7 +172,7 @@ namespace Parquet.Data.Rows
          return false;
       }
 
-      private static void ValidateColumnsAreInSchema(Schema schema, DataColumn[] columns)
+      public static void ValidateColumnsAreInSchema(Schema schema, DataColumn[] columns)
       {
          DataField[] schemaFields = schema.GetDataFields();
          DataField[] passedFields = columns.Select(f => f.Field).ToArray();

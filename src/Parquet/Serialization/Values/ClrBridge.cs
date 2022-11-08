@@ -7,7 +7,7 @@ using Parquet.Data;
 
 namespace Parquet.Serialization.Values
 {
-   class ClrBridge
+   public class ClrBridge
    {
       private readonly Type _classType;
       private static readonly ConcurrentDictionary<TypeCachingKey, MSILGenerator.PopulateListDelegate> _collectorKeyToTag = new ConcurrentDictionary<TypeCachingKey, MSILGenerator.PopulateListDelegate>();

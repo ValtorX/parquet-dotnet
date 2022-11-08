@@ -8,7 +8,7 @@ namespace Parquet.Data.Rows
    /// <summary>
    /// Everything is rows!!! Not dealing with dictionaries etc. seems like a brilliant idea!!!
    /// </summary>
-   internal static class RowValidator
+   public static class RowValidator
    {
       public static void Validate(Row row, IReadOnlyList<Field> fields)
       {
@@ -38,7 +38,7 @@ namespace Parquet.Data.Rows
          }
       }
 
-      private static void ValidateMap(MapField mf, object value)
+      public static void ValidateMap(MapField mf, object value)
       {
          if(!value.GetType().TryExtractEnumerableType(out Type elementType))
          {
@@ -56,7 +56,7 @@ namespace Parquet.Data.Rows
          }
       }
 
-      private static void ValidateList(ListField lf, object value)
+      public static void ValidateList(ListField lf, object value)
       {
          bool isEnumerable = value.GetType().TryExtractEnumerableType(out Type elementType);
 
@@ -86,7 +86,7 @@ namespace Parquet.Data.Rows
          }
       }
 
-      private static void ValidatePrimitive(DataField df, object value)
+      public static void ValidatePrimitive(DataField df, object value)
       {
          if(value == null)
          {

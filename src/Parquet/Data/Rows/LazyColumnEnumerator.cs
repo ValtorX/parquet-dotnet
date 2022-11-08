@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Parquet.Data.Rows
 {
-   class LazyColumnEnumerator : IEnumerable, IEnumerator
+   public class LazyColumnEnumerator : IEnumerable, IEnumerator
    {
       private readonly DataColumn _dc;
       private readonly int _start;

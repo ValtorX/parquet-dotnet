@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Parquet.Data.Rows
 {
-   class RowsToDataColumnsConverter
+   public class RowsToDataColumnsConverter
    {
       private readonly Schema _schema;
       private readonly IReadOnlyCollection<Row> _rows;
@@ -28,7 +28,7 @@ namespace Parquet.Data.Rows
          return result;
       }
 
-      private void ProcessRows(IReadOnlyCollection<Field> fields, IReadOnlyCollection<Row> rows, int level, LevelIndex[] indexes)
+      public void ProcessRows(IReadOnlyCollection<Field> fields, IReadOnlyCollection<Row> rows, int level, LevelIndex[] indexes)
       {
          int i = 0;
          foreach(Row row in rows)
@@ -37,7 +37,7 @@ namespace Parquet.Data.Rows
          }
       }
 
-      private void ProcessRow(IReadOnlyCollection<Field> fields, Row row, int level, LevelIndex[] indexes)
+      public void ProcessRow(IReadOnlyCollection<Field> fields, Row row, int level, LevelIndex[] indexes)
       {
          int cellIndex = 0;
          foreach(Field f in fields)
@@ -68,7 +68,7 @@ namespace Parquet.Data.Rows
          }
       }
 
-      private void ProcessMap(MapField mapField, IReadOnlyCollection<Row> mapRows, int level, LevelIndex[] indexes)
+      public void ProcessMap(MapField mapField, IReadOnlyCollection<Row> mapRows, int level, LevelIndex[] indexes)
       {
          var fields = new Field[] { mapField.Key, mapField.Value };
 
@@ -79,7 +79,7 @@ namespace Parquet.Data.Rows
          ProcessRow(fields, row, level, indexes);
       }
 
-      private void ProcessList(ListField listField, object cellValue, int level, LevelIndex[] indexes)
+      public void ProcessList(ListField listField, object cellValue, int level, LevelIndex[] indexes)
       {
          Field f = listField.Item;
 
@@ -97,12 +97,12 @@ namespace Parquet.Data.Rows
          }
       }
 
-      private void ProcessDataValue(Field f, object value, LevelIndex[] indexes)
+      public void ProcessDataValue(Field f, object value, LevelIndex[] indexes)
       {
          GetAppender(f).Add(value, indexes);
       }
 
-      private DataColumnAppender GetAppender(Field f)
+      public DataColumnAppender GetAppender(Field f)
       {
          //prepare value appender
          if(!_pathToDataColumn.TryGetValue(f.Path, out DataColumnAppender appender))

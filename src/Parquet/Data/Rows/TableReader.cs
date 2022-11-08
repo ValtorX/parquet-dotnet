@@ -9,7 +9,7 @@ namespace Parquet.Data.Rows
    /// <summary>
    /// Navigates the table
    /// </summary>
-   internal sealed class TableReader
+   public sealed class TableReader
    {
       private readonly Table _table;
 

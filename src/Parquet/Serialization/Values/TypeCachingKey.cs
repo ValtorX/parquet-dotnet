@@ -5,7 +5,7 @@ using Parquet.Data;
 
 namespace Parquet.Serialization.Values
 {
-   class TypeCachingKey : IEquatable<TypeCachingKey>
+   public class TypeCachingKey : IEquatable<TypeCachingKey>
    {
       public TypeCachingKey(Type classType, DataField field)
       {

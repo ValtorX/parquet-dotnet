@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Parquet.Serialization
 {
-   class HttpEncoder
+   public class HttpEncoder
    {
       private const bool JavaScriptEncodeAmpersand = false;
 
