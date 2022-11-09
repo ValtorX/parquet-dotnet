@@ -36,7 +36,7 @@ namespace Parquet {
         /// <summary>
         /// Batch through IEnumerable without going to the beginning every time. May need optimisations but OK so far.
         /// </summary>
-        public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int size) {
+        internal static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int size) {
             T[] bucket = null;
             int count = 0;
 
