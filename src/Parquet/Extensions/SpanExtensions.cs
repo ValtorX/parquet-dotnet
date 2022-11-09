@@ -1,6 +1,6 @@
 ﻿namespace System
 {
-   static class SpanExtensions
+   public static class SpanExtensions
    {
       public static int ReadInt32(this Span<byte> span)
       {

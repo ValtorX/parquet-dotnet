@@ -6,7 +6,7 @@ using Parquet.Data;
 
 namespace Parquet
 {
-   static class TypeExtensions
+   public static class TypeExtensions
    {
       /// <summary>
       /// Creates a generic typed list of elements of this type.

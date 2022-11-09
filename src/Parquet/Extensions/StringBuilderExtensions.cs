@@ -7,7 +7,7 @@ using Parquet.Serialization;
 
 namespace Parquet.Extensions
 {
-   internal static class StringBuilderExtensions
+   public static class StringBuilderExtensions
    {
       private const string BraceOpen = "{";
       private const string BraceClose = "}";
@@ -110,14 +110,14 @@ namespace Parquet.Extensions
          }
       }
 
-      private static void EncodeCsv(StringBuilder sb, StringFormat sf, object value)
+      public static void EncodeCsv(StringBuilder sb, StringFormat sf, object value)
       {
          if (value == null) return;
 
          sb.Append(value.ToString());
       }
 
-      private static void EncodeJson(StringBuilder sb, StringFormat sf, object value)
+      public static void EncodeJson(StringBuilder sb, StringFormat sf, object value)
       {
          if (value == null)
          {

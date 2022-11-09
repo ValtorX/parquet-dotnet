@@ -6,7 +6,7 @@ namespace Parquet
    /// <summary>
    /// Internal thrift data structure helpers
    /// </summary>
-   static class ThriftExtensions
+   public static class ThriftExtensions
    {
       public static bool IsAnnotatedWithAny(this Thrift.SchemaElement schemaElement, Thrift.ConvertedType[] convertedTypes)
       {

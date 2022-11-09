@@ -5,14 +5,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Parquet {
-    sealed class ReferenceEqualityComparer<T> : IEqualityComparer<T> where T : class {
+    public sealed class ReferenceEqualityComparer<T> : IEqualityComparer<T> where T : class {
         public static IEqualityComparer<T> Default { get; } = new ReferenceEqualityComparer<T>();
 
         public bool Equals(T x, T y) => ReferenceEquals(x, y);
         public int GetHashCode(T obj) => RuntimeHelpers.GetHashCode(obj);
     }
 
-    static class CollectionExtensions {
+    public static class CollectionExtensions {
         public static void TrimTail(this IList list, int maxValues) {
             if(list == null)
                 return;
@@ -64,7 +64,7 @@ namespace Parquet {
             return new DoubleIterator<TFirst, TSecond>(firstSource, secondSource);
         }
 
-        class DoubleIterator<TFirst, TSecond> : IEnumerable<Tuple<TFirst, TSecond>>, IEnumerator<Tuple<TFirst, TSecond>> {
+        public class DoubleIterator<TFirst, TSecond> : IEnumerable<Tuple<TFirst, TSecond>>, IEnumerator<Tuple<TFirst, TSecond>> {
             private readonly IEnumerator<TFirst> _first;
             private readonly IEnumerator<TSecond> _second;
 
